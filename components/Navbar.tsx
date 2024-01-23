@@ -19,13 +19,23 @@ const Navbar = () => {
               width={138}
               height={1}
             ></Image>
-          
           </Link>
-          <Custombtn
-            title="Sign in"
-            btnType="button"
-            containerstyle="text-primary-blue rounded-full bg-white -mt-10 min-w-[130px]"
-          />
+          <div className="flex gap-6">
+            <Link href="/login">
+              <Custombtn
+                title="Sign in"
+                btnType="button"
+                containerstyle="text-primary-blue -mr-16 rounded-full bg-white -mt-10 min-w-[130px]"
+              />
+            </Link>
+            <Link href="/signup">
+              <Custombtn
+                title="Sign up"
+                btnType="button"
+                containerstyle="rounded-full bg-white -mt-10 min-w-[130px]"
+              />
+            </Link>
+          </div>
         </nav>
       </header>
     </>

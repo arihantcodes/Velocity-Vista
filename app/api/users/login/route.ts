@@ -1,7 +1,7 @@
 import { connect } from "@/dbconfig/dbconfig";
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/usermodel";
-import bcryptjs from "bcryptjs";
+import { compare as comparePasswords } from "bcryptjs"; // Import only the 'compare' function
 import jwt from "jsonwebtoken";
 
 // Connect to the database
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Compare the provided password with the stored hashed password
-    const validPassword = await bcryptjs.compare(password, user.password);
+    const validPassword = await comparePasswords(password, user.password);
 
     if (!validPassword) {
       return NextResponse.json(

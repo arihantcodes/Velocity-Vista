@@ -1,13 +1,11 @@
 "use client";
-import { useState } from "react";
-import React, {useEffect} from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from 'next/navigation'; // Fix the import
 
-import { useRouter } from 'next/navigation'
 import axios from "axios";
 
-
-const login = () => {
+const Login = () => {
   const router = useRouter();
   const [user, setUser] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -19,10 +17,13 @@ const login = () => {
       const response = await axios.post("/api/users/login", user);
       console.log("Login success", response.data);
 
-      // Redirect to the '/about' page upon successful login
-      router.push('/about');
-    } catch (error: any) {
+      // Assuming the server returns a success status, you can redirect here
+      if (response.status === 200) {
+        router.replace("/about");
+      }
+    } catch (error:any) {
       console.log("Login failed", error.message);
+      // Handle login failure, e.g., show an error message to the user
     } finally {
       setLoading(false);
     }
@@ -38,9 +39,9 @@ const login = () => {
   }, [user]);
 
   return (
-    <div className="min-h-screen  flex items-center justify-center">
-      <form action="" className="bg-white border p-40 shadow-lg">
-        <h2 className="text-center font-bold text-xl mb-10 ">
+    <div className="min-h-screen flex items-center justify-center">
+      <form className="bg-white border p-40 shadow-lg">
+        <h2 className="text-center font-bold text-xl mb-10">
           {loading ? "Processing" : "Login Page"}
         </h2>
         <div>
@@ -80,4 +81,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login; // Ensure the component name starts with an uppercase letter

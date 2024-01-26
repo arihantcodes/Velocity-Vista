@@ -37,4 +37,4 @@ Velocity Vista is a modern car rental website built with Next.js and TypeScript.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/velocity-vista.git
+   git clone https://github.com/arihantdotcom/Velocity-Vista.git
